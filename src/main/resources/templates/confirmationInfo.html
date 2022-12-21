@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>WP lab - Confirmation Info</title>
+  <style type="text/css">
+    body {
+      width: 800px;
+      margin: auto;
+    }
+    table {
+      width: 100%;
+    }
+
+    table, td, th {
+      border: 1px solid black;
+      padding: 3px 2px;
+    }
+
+    section {
+      float: left;
+      margin: 0 1.5%;
+      width: 63%;
+    }
+
+    aside {
+      float: right;
+      margin: 0 1.5%;
+      width: 30%;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Balloon Order page - Order confirmation </h1>
+</header>
+
+<table>
+  <tr>
+    <th colspan="2">
+      Your Order Status
+    </th>
+  </tr>
+  <tr>
+    <td><b>Client Name </b></td>
+    <td th:name="ClientName"><th:block th:text="${ClientName}"></th:block></td>
+  </tr>
+  <tr>
+    <td><b>Client Address </b></td>
+    <td><th:block th:text="${DeliveryAddress}"></th:block></td>
+  </tr>
+  <tr>
+    <td><b>Client IP Address</b></td>
+    <td><th:block th:text="${ClientIP}"></th:block></td>
+  </tr>
+  <tr>
+    <td><b>Client Browser</b></td>
+    <td><th:block th:text="${ClientWebBrowser}"></th:block></td>
+  </tr>
+  <tr>
+    <td><b>Balloon Color </b></td>
+    <td><th:block th:text="${BalloonColor}"></th:block></td>
+  </tr>
+  <tr>
+    <td><b>Balloon Size </b></td>
+    <td><th:block th:text="${BalloonSize}"></th:block></td>
+  </tr>
+</table>
+</br>
+</br>
+
+<section>
+<form th:action="@{/orders}" th:method="POST" >
+  <table hidden>
+    <tr>
+    </tr>
+    <tr>
+      <td><input type="radio" name="client_name" checked th:value="${ClientName}"></td>
+    </tr>
+    <tr>
+      <td><input type="radio" name="delivery_address" checked th:value="${DeliveryAddress}"></td>
+    </tr>
+    <tr>
+      <td><input type="radio" name="balloon_color" checked th:value="${BalloonColor}"></td>
+    </tr>
+    <tr>
+      <td><input type="radio" name="balloon_size" checked th:value="${BalloonSize}"></td>
+    </tr>
+  </table>
+
+  <input type="submit" value="View Your Orders">
+</form>
+
+</section>
+</body>
+</html>

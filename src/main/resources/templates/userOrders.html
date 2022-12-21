@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WP Lab - Client Orders</title>
+  <style type="text/css">
+    table, td, th {
+      border: 1px solid black;
+      padding: 3px 2px;
+    }
+  </style>
+</head>
+<body>
+<th:block xmlns:th="http://www.thymeleaf.org">
+
+  <div class="container mb-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="table-responsive">
+
+          <table>
+            <thead>
+            <tr>
+              <th colspan="4">User Order List</th>
+            </tr>
+            <tr>
+              <th scope="col">Client Name</th>
+              <th scope="col">Delivery Address</th>
+              <th scope="col">Balloon Color</th>
+              <th scope="col">Balloon Size</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+                <ol>
+                  <li th:each="client_name : ${client_names}">
+                    <th:block th:text="${client_name}">></th:block>
+                    <br>
+                  </li>
+                </ol>
+              </td>
+              <td>
+                <ul style="list-style-type:none;">
+                  <li th:each="delivery_address : ${delivery_addresses}">
+                    <th:block th:text="${delivery_address}">></th:block>
+                    <br>
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <ul style="list-style-type:none;">
+                  <li th:each="balloon_color : ${balloon_colors}">
+                    <th:block th:text="${balloon_color}">></th:block>
+                    <br>
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <ul style="list-style-type:none;">
+                  <li th:each="balloon_size : ${balloon_sizes}">
+                    <th:block th:text="${balloon_size}"></th:block>
+                    <br>
+                  </li>
+                </ul>
+              </td>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <form th:method="GET" th:action="@{/balloons}">
+      <div>
+        <input type="submit" value="Back">
+      </div>
+    </form>
+    <br>
+    <form th:type="GET" th:action="@{/logout}">
+      <div>
+        <input type="submit" value="Logout">
+      </div>
+    </form>
+  </div>
+</th:block>
+
+</body>
+</html>

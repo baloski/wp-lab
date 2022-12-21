@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Balloon Order page - Welcome and choose a Balloon</title>
+</head>
+<body>
+<header>
+    <h1>Balloon Shop App</h1>
+    <main>
+        <h2>Available Balloon Colors:</h2>
+        <ul>
+            <li th:each="balloon : ${balloons}"><th:block th:text="${balloon.name}"></th:block>
+                <form th:action="@{'/balloons/delete/{id}' (id=${balloon.getId()})}" th:method="DELETE">
+                    <button type="submit" value="DELETE" style="display: inline">DELETE</button>
+                </form>
+
+                <form th:action="@{'/balloons/edit-form/{id}' (id=${balloon.getId()})}" th:method="GET">
+                    <button type="submit"
+                            class="btn btn-sm btn-primary cart-product">
+                        <i class="fa fa-trash">Edit Balloon</i>
+                    </button>
+                </form>
+            </li>
+        </ul>
+        <form th:action="@{'/balloons/add-form'}" th:method="GET">
+            <button type="submit"
+                    class="btn btn-sm btn-primary cart-product">
+                Add Balloon
+            </button>
+
+
+        </form>
+
+        <div th:if="${hasError}">
+            <h2 class="text-center text-danger" style="color: red" th:text="${error}"></h2>
+        </div>
+
+        <h2>Choose balloon color:</h2>
+        <form th:method="POST" th:action="@{/}">
+            <input type="radio" name="color" value="Red Balloon"/> Red Balloon<br/>
+            <input type="radio" name="color" value="Green Balloon"/> Green Balloon<br/>
+            <input type="radio" name="color" value="Yellow Balloon"/> Yellow Balloon<br/>
+            <input type="radio" name="color" value="Blue Balloon"/> Blue Balloon<br/>
+            <input type="radio" name="color" value="White Balloon"/> White Balloon<br/>
+            <input type="radio" name="color" value="Gray Balloon"/> Gray Balloon<br/>
+            <input type="radio" name="color" value="Purple Balloon"/> Purple Balloon<br/>
+            <input type="radio" name="color" value="Black Balloon"/> Black Balloon<br/>
+            <input type="radio" name="color" value="Orange Balloon"/> Orange Balloon<br/>
+            <input type="radio" name="color" value="Lime Balloon"/> Lime Balloon<br/>
+
+            <br/>
+            <input type="submit" th:value="Submit">
+        </form>
+
+
+</main>
+</body>
+</html>
+
+
